@@ -2,14 +2,20 @@ class StringCalculator {
     add(numbers) {
         if (numbers === "") return 0;
 
+        let delimiter = /,|\n/; // Default delimiters: comma and newline
+
         if (numbers.startsWith("//")) {
-            const delimiterLineEnd = numbers.indexOf("\n");
-            const delimiter = numbers.slice(2, delimiterLineEnd);
-            numbers = numbers.slice(delimiterLineEnd + 1);
-            return numbers.split(new RegExp(`\\${delimiter}`)).map(Number).reduce((sum, num) => sum + num, 0);
+            const match = numbers.match(/^\/\/(.+)\n/);
+            if (match) {
+                delimiter = new RegExp(match[1], "g"); // Use the custom delimiter
+                numbers = numbers.slice(match[0].length); // Remove delimiter declaration
+            }
         }
 
-        return numbers.split(/,|\n/).map(Number).reduce((sum, num) => sum + num, 0);
+        return numbers
+            .split(delimiter)
+            .map(Number)
+            .reduce((sum, num) => sum + num, 0);
     }
 }
 
