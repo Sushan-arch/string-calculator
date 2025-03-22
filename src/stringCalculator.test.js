@@ -18,4 +18,8 @@ describe('StringCalculator', () => {
     test('returns sum of two numbers separated by a comma', () => {
         expect(calculator.add("1,2")).toBe(3);
     });
+
+    test('handles multiple numbers separated by commas', () => {
+        expect(calculator.add("1,2,3,4,5")).toBe(15);
+    });
 });
