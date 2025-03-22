@@ -1,5 +1,10 @@
 class StringCalculator {
+    constructor() {
+        this.callCount = 0; // Counter to track method calls
+    }
+
     add(numbers) {
+        this.callCount++; // Increment call count on each call
         if (numbers === "") return 0;
 
         let delimiter = /,|\n/; // Default delimiters: comma and newline
@@ -35,6 +40,10 @@ class StringCalculator {
         if (negatives.length > 0) throw new Error(`negatives not allowed: ${negatives.join(", ")}`);
 
         return sum;
+    }
+
+    getCalledCount() {
+        return this.callCount;
     }
 }
 
