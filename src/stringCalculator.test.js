@@ -38,4 +38,8 @@ describe('StringCalculator', () => {
     test('ignores numbers greater than 1000', () => {
         expect(calculator.add("1001,2")).toBe(2);
     });
+
+    test('supports multi-character delimiters', () => {
+        expect(calculator.add("//[***]\n1***2***3")).toBe(6);
+    });
 });
