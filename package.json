@@ -1,7 +1,6 @@
 {
     "name": "string-calculator",
     "version": "1.0.0",
-    "main": "src/stringCalculator.js",
     "scripts": {
         "test": "jest --watch"
     },
