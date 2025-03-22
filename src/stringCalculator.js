@@ -29,7 +29,7 @@ class StringCalculator {
 
             const number = Number(num);
             if (number < 0) negatives.push(number);
-            sum += number; // No longer ignoring numbers > 1000
+            if (number <= 1000) sum += number;
         }
 
         if (negatives.length > 0) throw new Error(`negatives not allowed: ${negatives.join(", ")}`);
