@@ -22,4 +22,8 @@ describe('StringCalculator', () => {
     test('handles multiple numbers separated by commas', () => {
         expect(calculator.add("1,2,3,4,5")).toBe(15);
     });
+
+    test('handles newline as a delimiter', () => {
+        expect(calculator.add("1\n2,3")).toBe(6);
+    });
 });
