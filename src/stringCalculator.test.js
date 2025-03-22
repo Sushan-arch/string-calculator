@@ -42,4 +42,15 @@ describe('StringCalculator', () => {
     test('supports multi-character delimiters', () => {
         expect(calculator.add("//[***]\n1***2***3")).toBe(6);
     });
+
+    test('throws an exception for multiple negative numbers', () => {
+        expect(() => calculator.add("1,-2,-3")).toThrow("negatives not allowed: -2, -3");
+    });
+
+    test('tracks the number of times add() was called', () => {
+        calculator.add("1,2");
+        calculator.add("3,4");
+        expect(calculator.getCalledCount()).toBe(2);
+    });
+
 });

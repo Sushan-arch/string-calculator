@@ -10,12 +10,12 @@ class StringCalculator {
             const delimiterLineEnd = numbers.indexOf("\n");
             let customDelimiter = numbers.slice(2, delimiterLineEnd);
 
-            // Support delimiters of any length
+            // Support multiple custom delimiters of any length
             if (customDelimiter.startsWith("[") && customDelimiter.endsWith("]")) {
                 const delimiters = customDelimiter.match(/\[([^\[\]]+)\]/g).map(d => d.slice(1, -1));
-                delimiter = new RegExp(delimiters.join("|"), "g");
+                delimiter = new RegExp(delimiters.map(d => d.replace(/[-\/\\^$*+?.()|[\]{}]/g, '\\$&')).join("|"), "g");
             } else {
-                delimiter = new RegExp(customDelimiter, "g");
+                delimiter = new RegExp(customDelimiter.replace(/[-\/\\^$*+?.()|[\]{}]/g, '\\$&'), "g");
             }
 
             numbers = numbers.slice(delimiterLineEnd + 1); // Remove the delimiter definition line
