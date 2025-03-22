@@ -53,4 +53,11 @@ describe('StringCalculator', () => {
         expect(calculator.getCalledCount()).toBe(2);
     });
 
+    test('handles input with only newlines', () => {
+        expect(calculator.add("\n")).toBe(0);
+    });
+
+    test('ignores trailing delimiters', () => {
+        expect(calculator.add("1,2,\n")).toBe(3);
+    });
 });
